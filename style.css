@@ -1,0 +1,49 @@
+/* Keyframes pour l'animation "liquide" (déplacé depuis la config Tailwind) */
+@keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); filter: blur(24px); }
+    33% { transform: translate(60px, -100px) scale(1.2); filter: blur(32px); }
+    66% { transform: translate(-40px, 80px) scale(0.9); filter: blur(32px); }
+    100% { transform: translate(0px, 0px) scale(1); filter: blur(24px); }
+}
+
+/* Classe d'animation pour le blob rose (venant de tailwind.config) */
+/* Tailwind génère 'animate-blob', mais on le recrée ici pour plus de clarté */
+.animate-blob {
+    animation: blob 10s infinite ease-in-out;
+}
+
+/* Styles personnalisés pour le fond "liquide" (blobs ::before et ::after) */
+.liquid-bg::before, .liquid-bg::after {
+    content: '';
+    position: absolute;
+    filter: blur(32px);
+    mix-blend-mode: multiply; /* Changez en 'screen' ou 'overlay' sur fond clair */
+    border-radius: 50%;
+    /* Note: l'animation 'blob' est définie ci-dessus */
+    animation: blob 12s infinite ease-in-out; 
+}
+
+/* Premier "blob" de couleur */
+.liquid-bg::before {
+    top: 10%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(139, 92, 246, 0.4); /* Violet */
+    animation-delay: 0s;
+}
+
+/* Deuxième "blob" de couleur */
+.liquid-bg::after {
+    bottom: 10%;
+    right: 10%;
+    width: 350px;
+    height: 350px;
+    background: rgba(20, 184, 166, 0.4); /* Cyan/Turquoise */
+    animation-delay: 3s;
+}
+
+/* Classe pour le bouton de navigation actif */
+.nav-active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
